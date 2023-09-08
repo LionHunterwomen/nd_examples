@@ -302,7 +302,7 @@ disable_mode = 2
 shape = SubResource("ConcavePolygonShape3D_0q0s0")
 
 [node name="CameraGimbal" parent="." instance=ExtResource("3_nepmu")]
-transform = Transform3D(0.997648, -0.0439704, 0.0525763, -0.00725831, 0.695003, 0.71897, -0.0681541, -0.717661, 0.693049, 2.78854, 34.0257, 40.5895)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="相机位" type="Node3D" parent="."]
 
@@ -360,7 +360,6 @@ grow_horizontal = 0
 unique_name_in_owner = true
 layout_mode = 2
 
-[editable path="CameraGimbal"]
 [editable path="相机位/鸟瞰"]
 [editable path="相机位/金水源"]
 [editable path="相机位/红山石"]

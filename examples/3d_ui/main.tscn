@@ -44,6 +44,7 @@ shadow_enabled = true
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
+fsr_sharpness = 0.0
 size = Vector2i(908, 308)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
