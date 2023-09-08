@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlstvffl2w5aw"]
+
+[ext_resource type="Script" path="res://examples/camera_system/camera_gimbal.gd" id="1_h374r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i4k3s"]
+radius = 0.4
+
+[node name="CameraGimbal" type="Node3D" groups=["主相机"]]
+script = ExtResource("1_h374r")
+
+[node name="Inner" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CharacterBody" type="CharacterBody3D" parent="Inner"]
+unique_name_in_owner = true
+
+[node name="CollisionShape" type="CollisionShape3D" parent="Inner/CharacterBody"]
+shape = SubResource("SphereShape3D_i4k3s")
+disabled = true
+
+[node name="Camera" type="Camera3D" parent="Inner/CharacterBody"]
+unique_name_in_owner = true
+current = true
+
+[node name="Up" type="RayCast3D" parent="Inner/CharacterBody"]
+target_position = Vector3(0, 0.6, 0)
+
+[node name="Down" type="RayCast3D" parent="Inner/CharacterBody"]
+target_position = Vector3(0, -0.6, 0)

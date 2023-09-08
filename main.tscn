@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://1lxj8p3mw04m"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_0cse1"]
+[ext_resource type="PackedScene" uid="uid://df0go77j07giy" path="res://menu.tscn" id="1_e437s"]
+[ext_resource type="Script" path="res://gui.gd" id="1_qya85"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0cse1")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource("1_qya85")
+
+[node name="Menu" parent="GUI" instance=ExtResource("1_e437s")]
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgi7w5ikdy8km"]
+
+[ext_resource type="Script" path="res://examples/camera_system/camera_struct.gd" id="1_m1nra"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_l53tu"]
+radius = 0.1
+height = 0.2
+
+[node name="CameraStruct" type="Node" groups=["相机结构"]]
+script = ExtResource("1_m1nra")
+
+[node name="Camera" type="Camera3D" parent="."]
+
+[node name="TargetPoint" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_l53tu")

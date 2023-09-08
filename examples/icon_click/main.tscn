@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://bh8tr6gkmnpwd"]
+
+[ext_resource type="Script" path="res://examples/icon_click/icon_scene.gd" id="1_t7j2j"]
+[ext_resource type="Shader" path="res://shaders/grid.gdshader" id="1_xn5bf"]
+[ext_resource type="PackedScene" uid="uid://b8grlr2356yi7" path="res://examples/icon_click/icon.tscn" id="2_4hym3"]
+[ext_resource type="Script" path="res://examples/icon_click/camera_controller.gd" id="3_x1f01"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cxejh"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ec036"]
+sky_material = SubResource("ProceduralSkyMaterial_cxejh")
+
+[sub_resource type="Environment" id="Environment_3y80d"]
+background_mode = 2
+sky = SubResource("Sky_ec036")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5piys"]
+size = Vector2(50, 50)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgtm5"]
+render_priority = 0
+shader = ExtResource("1_xn5bf")
+shader_parameter/tile_color = Color(1, 1, 1, 1)
+shader_parameter/grout_color = Color(0, 0, 0, 1)
+shader_parameter/accent_color = Color(0.92, 0.7, 0.25, 1)
+shader_parameter/roughness = 0.2
+shader_parameter/use_normal_map = false
+shader_parameter/normal_intensity = 0.06
+shader_parameter/rotate_45 = false
+shader_parameter/tile_scale = 2.0
+shader_parameter/diamond_size = 1.0
+shader_parameter/grout_thickness = 0.0
+shader_parameter/diamond_accent_size = 1.0
+shader_parameter/grout_accent_size = 0.018
+
+[node name="IconScene" type="Node3D"]
+script = ExtResource("1_t7j2j")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3y80d")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_5piys")
+surface_material_override/0 = SubResource("ShaderMaterial_wgtm5")
+
+[node name="Icon" parent="." instance=ExtResource("2_4hym3")]
+
+[node name="Icon2" parent="." instance=ExtResource("2_4hym3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46493, 0.0151646, 0)
+
+[node name="Icon3" parent="." instance=ExtResource("2_4hym3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46493, 0.0151646, 2.78519)
+
+[node name="Icon4" parent="." instance=ExtResource("2_4hym3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.46126, 0.0151646, 2.78519)
+
+[node name="Icon5" parent="." instance=ExtResource("2_4hym3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.46126, 0.0151646, -5.52854)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.993772, -0.0637519, 0.0913934, 0, 0.820173, 0.572115, -0.111432, -0.568552, 0.815065, 1.02913, 3.69473, 5.60928)
+script = ExtResource("3_x1f01")

@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7ij4pcohiy44"]
+
+[ext_resource type="Script" path="res://examples/3d_ui/main.gd" id="1_2ac6u"]
+[ext_resource type="Script" path="res://examples/3d_ui/camera.gd" id="2_gyle3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6vum5"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_31q6a"]
+sky_material = SubResource("ProceduralSkyMaterial_6vum5")
+
+[sub_resource type="Environment" id="Environment_g6vly"]
+background_mode = 2
+sky = SubResource("Sky_31q6a")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l5pd"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ugt0q"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8k2f6"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hea8y"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_8k2f6")
+albedo_texture_force_srgb = true
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pp0dm"]
+data = PackedVector3Array(0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0)
+
+[node name="3d_ui" type="Node3D"]
+script = ExtResource("1_2ac6u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_g6vly")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0.433203, -0.400126, 0.80761, -0.249677, 0.807711, 0.534102, 0, 0, 0)
+shadow_enabled = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+size = Vector2i(908, 308)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewport"]
+
+[node name="GridContainer" type="GridContainer" parent="SubViewport/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Button" type="Button" parent="SubViewport/CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_4l5pd")
+text = "Button"
+
+[node name="Button2" type="Button" parent="SubViewport/CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_4l5pd")
+text = "Button"
+
+[node name="Button3" type="Button" parent="SubViewport/CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_4l5pd")
+text = "Button"
+
+[node name="Button4" type="Button" parent="SubViewport/CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_4l5pd")
+text = "Button"
+
+[node name="Button5" type="Button" parent="SubViewport/CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_4l5pd")
+text = "Button"
+
+[node name="Button6" type="Button" parent="SubViewport/CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_4l5pd")
+text = "Button"
+
+[node name="Button7" type="Button" parent="SubViewport/CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_4l5pd")
+text = "Button"
+
+[node name="Button8" type="Button" parent="SubViewport/CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_4l5pd")
+text = "Button"
+
+[node name="Button9" type="Button" parent="SubViewport/CanvasLayer/GridContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_4l5pd")
+text = "Button"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59804, 0)
+mesh = SubResource("QuadMesh_ugt0q")
+surface_material_override/0 = SubResource("StandardMaterial3D_hea8y")
+metadata/_edit_group_ = true
+
+[node name="Area" type="Area3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area"]
+shape = SubResource("ConcavePolygonShape3D_pp0dm")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.840696, 1.06159)
+script = ExtResource("2_gyle3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]

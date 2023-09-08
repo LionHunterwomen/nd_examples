@@ -1,0 +1,368 @@
+[gd_scene load_steps=26 format=3 uid="uid://c18lpaxwxoe8i"]
+
+[ext_resource type="Script" path="res://examples/camera_system/main.gd" id="1_5dq3u"]
+[ext_resource type="Shader" path="res://shaders/grid.gdshader" id="1_vinbc"]
+[ext_resource type="PackedScene" uid="uid://dlstvffl2w5aw" path="res://examples/camera_system/camera_gimbal.tscn" id="3_nepmu"]
+[ext_resource type="PackedScene" uid="uid://cgi7w5ikdy8km" path="res://examples/camera_system/camera_struct.tscn" id="4_ocm0j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_emt1b"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_iaea1"]
+sky_material = SubResource("ProceduralSkyMaterial_emt1b")
+
+[sub_resource type="Environment" id="Environment_w5s1q"]
+background_mode = 2
+sky = SubResource("Sky_iaea1")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_epfv6"]
+size = Vector2(100, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u4b61"]
+render_priority = 0
+shader = ExtResource("1_vinbc")
+shader_parameter/tile_color = Color(1, 1, 1, 1)
+shader_parameter/grout_color = Color(0, 0, 0, 1)
+shader_parameter/accent_color = Color(0.92, 0.7, 0.25, 1)
+shader_parameter/roughness = 0.2
+shader_parameter/use_normal_map = false
+shader_parameter/normal_intensity = 0.06
+shader_parameter/rotate_45 = false
+shader_parameter/tile_scale = 1.0
+shader_parameter/diamond_size = 1.0
+shader_parameter/grout_thickness = 0.0
+shader_parameter/diamond_accent_size = 1.0
+shader_parameter/grout_accent_size = 0.018
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7frg0"]
+albedo_color = Color(0.917647, 0.12549, 0.12549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jyw4"]
+albedo_color = Color(0.917647, 0.12549, 0.12549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldcdb"]
+albedo_color = Color(0.168627, 0.572549, 0.94902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nof87"]
+albedo_color = Color(0.34902, 0.619608, 0.737255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1vb0"]
+albedo_color = Color(0.580392, 0.776471, 0.835294, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhqm5"]
+albedo_color = Color(0.541176, 0.811765, 0.8, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byrf0"]
+albedo_color = Color(0.129412, 0.670588, 0.972549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oulse"]
+albedo_color = Color(0.329412, 0.760784, 0.984314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3y4dd"]
+albedo_color = Color(0.329412, 0.760784, 0.984314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1t5b7"]
+albedo_color = Color(0.329412, 0.760784, 0.984314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7okr"]
+albedo_color = Color(0.329412, 0.760784, 0.984314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mx3o2"]
+albedo_color = Color(0.329412, 0.760784, 0.984314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_to17e"]
+albedo_color = Color(0.329412, 0.760784, 0.984314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5w2ey"]
+albedo_color = Color(0.329412, 0.760784, 0.984314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kxac"]
+albedo_color = Color(0.329412, 0.760784, 0.984314, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0q0s0"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_5dq3u")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w5s1q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_epfv6")
+surface_material_override/0 = SubResource("ShaderMaterial_u4b61")
+
+[node name="JSY" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.1521, 0, 0)
+size = Vector3(1, 1, 1.7)
+material = SubResource("StandardMaterial3D_7frg0")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="JSY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00548, 0)
+size = Vector3(1, 1, 1.7)
+material = SubResource("StandardMaterial3D_1jyw4")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="JSY/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.770262, 0)
+operation = 1
+radius = 0.678
+material = SubResource("StandardMaterial3D_ldcdb")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="JSY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.827526, 0, -0.732871)
+size = Vector3(1, 1, 3.315)
+material = SubResource("StandardMaterial3D_nof87")
+
+[node name="HSS" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7571, 0.389345, -8.09849)
+size = Vector3(1, 1, 2.5)
+material = SubResource("StandardMaterial3D_a1vb0")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="HSS"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.229745, 1.96846)
+size = Vector3(1.1, 1, 1.555)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="HSS"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.93092, 0, 2.21861)
+material = SubResource("StandardMaterial3D_vhqm5")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="HSS"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00083, -0.319211, 0)
+size = Vector3(1, 0.5, 2.5)
+material = SubResource("StandardMaterial3D_byrf0")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="HSS/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04214, 0, 1.82975)
+operation = 2
+radius = 1.5
+sides = 32
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="HSS/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04214, 0, -1.6251)
+operation = 2
+radius = 1.5
+sides = 32
+
+[node name="SC1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3585, 0, 29.9409)
+size = Vector3(1, 1.5, 1.7)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SC1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.55483)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="SC1/CSGBox3D"]
+operation = 1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SC1/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.254314)
+size = Vector3(1, 1, 0.5)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="SC1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.48434)
+size = Vector3(1, 1.5, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="SC1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44269, 0, -0.965218)
+size = Vector3(1, 1, 4)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SC1/CSGBox3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.256357, 0, 0.351166)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="SC1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44269, 0, 2.13396)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SC1/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432604, 0, -0.446716)
+operation = 2
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="SC1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35828, 0, -2.48889)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="SC1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19225, 0, -4.40817)
+size = Vector3(1, 1, 0.6)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="SC1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44269, 0, -4.44318)
+size = Vector3(0.8, 1.5, 1)
+
+[node name="SC2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.8752, 0, 16.1478)
+size = Vector3(2, 1, 1)
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="SC2"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.241, -0.45)
+material = SubResource("StandardMaterial3D_oulse")
+
+[node name="SC3" type="CSGBox3D" parent="SC2/CSGCylinder3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.303261, 0.962141, 0.45)
+operation = 1
+size = Vector3(2, 1, 1)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="SC2"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.241, 0.45)
+material = SubResource("StandardMaterial3D_3y4dd")
+
+[node name="SC4" type="CSGBox3D" parent="SC2/CSGCylinder3D2"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.1924, 0.962141, -0.450001)
+operation = 1
+size = Vector3(2, 1, 1)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="SC2"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.096, -0.331675, -0.640833)
+radius = 1.0
+sides = 32
+material = SubResource("StandardMaterial3D_1t5b7")
+
+[node name="SC3" type="CSGBox3D" parent="SC2/CSGCylinder3D3"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.631, 0.962002, 0.622171)
+operation = 1
+size = Vector3(1.69508, 1, 1)
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="SC2"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.096, -0.341476, 0.601248)
+radius = 1.0
+sides = 32
+material = SubResource("StandardMaterial3D_x7okr")
+
+[node name="SC4" type="CSGBox3D" parent="SC2/CSGCylinder3D4"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.775864, 0.962139, -0.549408)
+operation = 1
+size = Vector3(1.69963, 1, 0.914514)
+
+[node name="Other" type="CSGBox3D" parent="SC2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.58469)
+size = Vector3(2, 1, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="SC2/Other"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.241, -0.45)
+material = SubResource("StandardMaterial3D_mx3o2")
+
+[node name="SC3" type="CSGBox3D" parent="SC2/Other/CSGCylinder3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.303261, 0.962141, 0.45)
+operation = 1
+size = Vector3(2, 1, 1)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="SC2/Other"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.241, 0.45)
+material = SubResource("StandardMaterial3D_to17e")
+
+[node name="SC4" type="CSGBox3D" parent="SC2/Other/CSGCylinder3D2"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.1924, 0.962141, -0.450001)
+operation = 1
+size = Vector3(2, 1, 1)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="SC2/Other"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.096, -0.331675, -0.640833)
+radius = 1.0
+sides = 32
+material = SubResource("StandardMaterial3D_5w2ey")
+
+[node name="SC3" type="CSGBox3D" parent="SC2/Other/CSGCylinder3D3"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.631, 0.962002, 0.622171)
+operation = 1
+size = Vector3(1.69508, 1, 1)
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="SC2/Other"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1.096, -0.341476, 0.601248)
+radius = 1.0
+sides = 32
+material = SubResource("StandardMaterial3D_4kxac")
+
+[node name="SC4" type="CSGBox3D" parent="SC2/Other/CSGCylinder3D4"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.775864, 0.962139, -0.549408)
+operation = 1
+size = Vector3(1.69963, 1, 0.914514)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SC2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73913, 0, -1.05522)
+size = Vector3(0.5, 1, 1)
+
+[node name="Collisions" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions"]
+disable_mode = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0q0s0")
+
+[node name="CameraGimbal" parent="." instance=ExtResource("3_nepmu")]
+transform = Transform3D(0.997648, -0.0439704, 0.0525763, -0.00725831, 0.695003, 0.71897, -0.0681541, -0.717661, 0.693049, 2.78854, 34.0257, 40.5895)
+
+[node name="相机位" type="Node3D" parent="."]
+
+[node name="鸟瞰" parent="相机位" instance=ExtResource("4_ocm0j")]
+
+[node name="Camera" parent="相机位/鸟瞰" index="0"]
+transform = Transform3D(0.997648, -0.0439704, 0.0525763, -0.00725831, 0.695003, 0.71897, -0.0681541, -0.717661, 0.693049, 2.78854, 34.0257, 40.5895)
+
+[node name="TargetPoint" parent="相机位/鸟瞰" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.78854, 34.0257, 40.5895)
+
+[node name="金水源" parent="相机位" instance=ExtResource("4_ocm0j")]
+
+[node name="Camera" parent="相机位/金水源" index="0"]
+transform = Transform3D(-0.927527, 0.257493, -0.27091, 0, 0.724827, 0.68893, 0.373758, 0.639001, -0.672296, -43.8013, 5.97801, -5.07348)
+
+[node name="TargetPoint" parent="相机位/金水源" index="1"]
+transform = Transform3D(0.0287846, 0.099357, -0.994635, 0, 0.995048, 0.0993982, 0.999586, -0.00286113, 0.028642, -41.9767, 1.33801, -0.545511)
+
+[node name="红山石" parent="相机位" instance=ExtResource("4_ocm0j")]
+
+[node name="Camera" parent="相机位/红山石" index="0"]
+transform = Transform3D(-0.962642, 0.190697, -0.192235, 0, 0.709942, 0.70426, 0.270776, 0.677951, -0.68342, -23.5779, 7.35124, -12.9028)
+
+[node name="TargetPoint" parent="相机位/红山石" index="1"]
+transform = Transform3D(-0.68328, 0.278883, -0.674798, 0, 0.924183, 0.38195, 0.730156, 0.260979, -0.631476, -22.127, 2.03583, -7.74468)
+
+[node name="一水厂" parent="相机位" instance=ExtResource("4_ocm0j")]
+
+[node name="Camera" parent="相机位/一水厂" index="0"]
+transform = Transform3D(0.515474, -0.437783, 0.736636, 0, 0.859647, 0.510889, -0.856905, -0.26335, 0.443125, 26.237, 5.97905, 31.4917)
+
+[node name="TargetPoint" parent="相机位/一水厂" index="1"]
+transform = Transform3D(0.982934, 0.0973584, -0.156081, 0, 0.848468, 0.529246, 0.183957, -0.520214, 0.833989, 20.9437, 2.30792, 28.3075)
+
+[node name="二水厂" parent="相机位" instance=ExtResource("4_ocm0j")]
+
+[node name="Camera" parent="相机位/二水厂" index="0"]
+transform = Transform3D(0.998403, -0.0427751, 0.0368919, 0, 0.653111, 0.757262, -0.0564864, -0.756053, 0.652068, 31.9795, 5.74217, 20.849)
+
+[node name="TargetPoint" parent="相机位/二水厂" index="1"]
+transform = Transform3D(0.786402, -0.122673, 0.605412, 0, 0.980082, 0.198591, -0.617715, -0.156172, 0.770739, 31.7644, 1.32693, 17.0471)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="ButtonList" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[editable path="CameraGimbal"]
+[editable path="相机位/鸟瞰"]
+[editable path="相机位/金水源"]
+[editable path="相机位/红山石"]
+[editable path="相机位/一水厂"]
+[editable path="相机位/二水厂"]
