@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://b0eutxd8ubklb"]
+
+[ext_resource type="LightmapGIData" uid="uid://daedxwia1aauw" path="res://examples/light_map/light_map1.imbake.lmbake" id="1_o32vw"]
+[ext_resource type="Script" path="res://examples/light_map/camera.gd" id="2_rek07"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jddwr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_gtwmx"]
+sky_material = SubResource("ProceduralSkyMaterial_jddwr")
+
+[sub_resource type="Environment" id="Environment_boy5x"]
+background_mode = 2
+sky = SubResource("Sky_gtwmx")
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qccf3"]
+lightmap_size_hint = Vector2i(52, 52)
+add_uv2 = true
+size = Vector2(10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vorpt"]
+lightmap_size_hint = Vector2i(54, 96)
+add_uv2 = true
+size = Vector3(2, 5, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ey4un"]
+lightmap_size_hint = Vector2i(54, 96)
+add_uv2 = true
+size = Vector3(2, 5, 8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ve0h"]
+lightmap_size_hint = Vector2i(59, 106)
+add_uv2 = true
+size = Vector3(10, 5, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_y8iui"]
+lightmap_size_hint = Vector2i(64, 33)
+add_uv2 = true
+radius = 2.0
+height = 4.0
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_boy5x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_qccf3")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 2)
+mesh = SubResource("BoxMesh_vorpt")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 2)
+mesh = SubResource("BoxMesh_ey4un")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 5)
+mesh = SubResource("BoxMesh_6ve0h")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
+mesh = SubResource("SphereMesh_y8iui")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.999877, 0.00616106, -0.0144111, 0, 0.919494, 0.393104, 0.0156728, 0.393056, -0.919381, -0.18787, 3.99005, -4.1154)
+current = true
+script = ExtResource("2_rek07")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18666, 1.8822, 0)
+light_color = Color(0, 0.952941, 0.992157, 1)
+light_bake_mode = 1
+shadow_enabled = true
+shadow_transmittance_bias = 15.073
+editor_only = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01054, 1.8822, 0)
+light_color = Color(0.517647, 0.992157, 0, 1)
+light_bake_mode = 1
+shadow_enabled = true
+editor_only = true
+
+[node name="LightmapGI" type="LightmapGI" parent="."]
+quality = 3
+light_data = ExtResource("1_o32vw")
